@@ -13,9 +13,9 @@ header {
 
 #title{
     margin: 5%;
-    font-size: 50px
+    font-size: 50px;
+    
 }
-
 header > nav {
     height: 100%;
 }
@@ -38,12 +38,21 @@ main h1 {
 }
 
 .mainpanel{
-   margin: 50px;
-}
+    margin: 50px;
+ }
 
 #mainpanel-content {
     margin: 50px;
 }
 #submitButton{
     display: block;
+}
+.surveyStart:hover { 
+    background-color: yellow;
+  }
+.title1{
+    color: black
+}
+.text{
+    color: black 
 }

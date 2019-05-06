@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Philosopher Finder</title>
 
-  	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
 
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
 
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-          
+
 	<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 	<header>
 		<nav>
-			<div class="nav-wrapper green accent-3">	
-				<a href="/" class="title" id="title">Philosopher Finder</a>
-				<ul class="right hide-on-med-and-down" id="head-nav-links">
-					<li><a href="/survey">Survey</a></li>
-					<li><a href="/api/philos">API Philosophers List</a></li>
-					<li><a href="#">GitHub Repo</a></li>
+			<div class="nav-wrapper yellow accent-3 title1">
+				<a href="/" class="title1 " id="title">Philosopher Finder</a>
+				<ul class="right hide-on-med-and-down " id="head-nav-links">
+					<li><a class="text" href="/survey">Survey</a></li>
+					<li><a class="text"href="/api/philos">API Philosophers List</a></li>
+					<li><a class="text"href="#">GitHub Repo</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -31,7 +32,7 @@
 	<main>
 		<div class="container">
 			<div class="row">
-				<div class="col s12 mainpanel">
+				<div class="col s12 ">
 					<div id="mainpanel-content">
 						<h1>Survey Questions</h1>
 						<div class="divider"></div>
@@ -40,12 +41,12 @@
 
 						<div class="input-field">
 							<h5>Name (Required)</h5>
-							<input type="text"  placeholder="Your Name Here" id="userName" required>
+							<input type="text" placeholder="Your Name Here" id="userName" required>
 						</div>
 
 						<div class="input-field">
 							<h5>Link to Photo Image (Required)</h5>
-							<input type="text"  placeholder="Photo Link Here" id="userPhoto" required>
+							<input type="text" placeholder="Photo Link Here" id="userPhoto" required>
 						</div>
 
 						<!-- Survey Questions -->
@@ -155,7 +156,8 @@
 
 						<div class="input-field col s12">
 							<h3>Question 9</h3>
-							<h5>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h5>
+							<h5>You think that everyone’s views should be respected regardless of whether they are
+								supported by facts or not.</h5>
 							<select id="question9">
 								<option value="" disabled selected>Choose your option</option>
 								<option value="1">1 (Strongly Disagree)</option>
@@ -181,7 +183,8 @@
 
 						<!-- Survey Submit Button -->
 						<div>
-							<button class="btn btn-lg block green accent-3" type="submit" name="action" id="submitButton">Submit Responses</button>
+							<button class="btn btn-lg block yellow accent-3" type="submit" name="action"
+								id="submitButton">Submit Responses</button>
 						</div>
 					</div>
 				</div>
@@ -204,47 +207,48 @@
 	</div>
 
 	<script type="text/javascript">
-		$(document).ready(function() {
+		$(document).ready(function () {
 			$('select').material_select();
 			$('.modal').modal({
-				dismissible: false, 
-				opacity: .5, 
-				inDuration: 300, 
-				outDuration: 200, 
-				startingTop: '4%', 
-				endingTop: '10%' 
+				dismissible: false,
+				opacity: .5,
+				inDuration: 300,
+				outDuration: 200,
+				startingTop: '4%',
+				endingTop: '10%'
 			});
 		});
 		// Activate submit button
-		$('#submitButton').on('click', function(event) {
+		$('#submitButton').on('click', function (event) {
 			event.preventDefault();
 			// Gather user inputs
 			var userInput = {
-				name:       $('#userName').val().trim(),
-				photo:      $('#userPhoto').val().trim(),
-				scores1:    $('#question1').val().trim(),
-				scores2:	$('#question2').val().trim(),
-				scores3:	$('#question3').val().trim(),
-				scores4:	$('#question4').val().trim(),
-				scores5:	$('#question5').val().trim(),
-				scores6:	$('#question6').val().trim(),
-				scores7:	$('#question7').val().trim(),
-				scores8:	$('#question8').val().trim(),
-				scores9:	$('#question9').val().trim(),
-				scores10:	$('#question10').val().trim()
-				
+				name: $('#userName').val().trim(),
+				photo: $('#userPhoto').val().trim(),
+				scores1: $('#question1').val().trim(),
+				scores2: $('#question2').val().trim(),
+				scores3: $('#question3').val().trim(),
+				scores4: $('#question4').val().trim(),
+				scores5: $('#question5').val().trim(),
+				scores6: $('#question6').val().trim(),
+				scores7: $('#question7').val().trim(),
+				scores8: $('#question8').val().trim(),
+				scores9: $('#question9').val().trim(),
+				scores10: $('#question10').val().trim()
+
 			};
 			console.log('Output = ' + JSON.stringify(userInput));
 			// Post input to compair and returns match
-			$.post('/api/philos', userInput, function(data) {
-      			console.log('response = ' + JSON.stringify(data));
-                
-      			$('#userMatch').html(data.matchName);
-		    	$("#userMatchImage").attr("src", data.matchImage);
-		    	// Pop open the modal dialog
-      			$('#modal1').modal('open');
-      		});
+			$.post('/api/philos', userInput, function (data) {
+				console.log('response = ' + JSON.stringify(data));
+
+				$('#userMatch').html(data.matchName);
+				$("#userMatchImage").attr("src", data.matchImage);
+				// Pop open the modal dialog
+				$('#modal1').modal('open');
+			});
 		});
 	</script>
 </body>
+
 </html>
