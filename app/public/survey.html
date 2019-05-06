@@ -220,10 +220,9 @@
 			event.preventDefault();
 			// Gather user inputs
 			var userInput = {
-				name: $('#userName').val().trim(),
-				photo: $('#userPhoto').val().trim(),
-				scores1:$('#question1').val().trim(),
-				
+				name:       $('#userName').val().trim(),
+				photo:      $('#userPhoto').val().trim(),
+				scores1:    $('#question1').val().trim(),
 				scores2:	$('#question2').val().trim(),
 				scores3:	$('#question3').val().trim(),
 				scores4:	$('#question4').val().trim(),
@@ -236,11 +235,10 @@
 				
 			};
 			console.log('Output = ' + JSON.stringify(userInput));
-			// Post input to compair
-			$.post('/api/philos', userInput)
-      		.done(function(data) {
-      			 console.log('response = ' + JSON.stringify(data));
-                //res data from apiroutes gets injected here-ish
+			// Post input to compair and returns match
+			$.post('/api/philos', userInput, function(data) {
+      			console.log('response = ' + JSON.stringify(data));
+                
       			$('#userMatch').html(data.matchName);
 		    	$("#userMatchImage").attr("src", data.matchImage);
 		    	// Pop open the modal dialog

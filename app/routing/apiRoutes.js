@@ -27,7 +27,7 @@ module.exports = function(app) {
 		// math...
 		var matchName = '';
 		var matchImage = '';
-		var totalDifference = 10000; // Make the initial value big for comparison
+		var totalDifference = 750000; 
 
 		// First loop of api list
 		for (var i = 0; i < philos.length; i++) {
@@ -38,7 +38,7 @@ module.exports = function(app) {
 			for (var j = 0; j < userResponses.length; j++) {
 				diff += Math.abs(philos[i].scores[j] - userResponses[j]);
 			}
-			console.log('diff = ' + diff);
+			console.log('difference = ' + diff);
 
 			// if its lower than the other guys, its he new closest philo
 			if (diff < totalDifference) {
@@ -52,7 +52,7 @@ module.exports = function(app) {
 		}
 
 
-		// Send philo back to page
+		// Send philo back to post on survey page
 		res.json({matchName: matchName, matchImage: matchImage});
 	});
 };
